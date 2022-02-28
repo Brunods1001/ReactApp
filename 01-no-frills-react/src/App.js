@@ -1,10 +1,8 @@
-const Pet = (props) => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, props.name),
-    React.createElement("h2", {}, props.species),
-    React.createElement("h2", {}, props.breed),
-  ]);
-};
+// import React from "react";
+// import ReactDOM from "react-dom";
+import { render } from "react-dom";
+
+import Pet from "./components/Pet";
 
 const Mimi = {
   name: "Mimi",
@@ -31,18 +29,32 @@ const Quickplay = {
 };
 
 const createPet = (props) => {
-  return React.createElement(Pet, props);
+  // return React.createElement(Pet, props);
+  // return <Pet name={props.name} breed={props.breed}></Pet>;
+  return <Pet {...props}></Pet>;
 };
 
 const petProps = [Mimi, Mojo, Luna, Quickplay];
 
 const elements = petProps.map(createPet);
 
+/*
 const App = () => {
   return React.createElement("div", {}, [
     React.createElement("h1", {}, "Adopt me!"),
     elements,
   ]);
 };
+*/
 
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+const App = () => {
+  return (
+    <div>
+      <h1>Adopt me!</h1>
+      {elements}
+    </div>
+  );
+};
+
+// ReactDOM.render(React.createElement(App), document.getElementById("root"));
+render(<App />, document.getElementById("root"));
